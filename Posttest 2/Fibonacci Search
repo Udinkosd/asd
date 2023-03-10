@@ -1,27 +1,19 @@
 def fibonacciSearch(arr, x):
-    """
-    Fungsi Fibonacci Search yang mengembalikan indeks dari elemen x pada array arr,
-    atau -1 jika x tidak ada di arr.
-    """
+
     n = len(arr)
-    fib2 = 0  # fibonacci(n-2)
-    fib1 = 1  # fibonacci(n-1)
-    fib = fib2 + fib1  # fibonacci(n)
+    fib2 = 0 
+    fib1 = 1
+    fib = fib2 + fib1
   
-    # Cari nilai dari fibonacci(n) yang terbesar yang lebih kecil atau sama dengan n
     while fib < n:
         fib2 = fib1
         fib1 = fib
         fib = fib2 + fib1
-  
-    # Indeks awal untuk pencarian
     offset = -1
   
-    # Melakukan pencarian
     while fib > 1:
         i = min(offset+fib2, n-1)
   
-        # Jika elemen merupakan list, lakukan pencarian di dalamnya
         if isinstance(arr[i], list):
             idx = fibonacciSearch(arr[i], x)
             if idx != -1:
