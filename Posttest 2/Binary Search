@@ -1,0 +1,30 @@
+def binary_search(array, index, index_awal, index_akhir):
+
+    if index_awal > index_akhir:
+        return -1, -1 
+    
+    index_tengah = (index_awal + index_akhir) // 2
+    if isinstance(array[index_tengah], list):
+        if index in array[index_tengah]:
+            return index_tengah, array[index_tengah].index(index)
+        elif index < array[index_tengah][0]:
+            return binary_search(array, index, index_awal, index_tengah - 1)
+        else:
+            return binary_search(array, index, index_tengah + 1, index_akhir)
+    else:
+        if index == array[index_tengah]:
+            return index_tengah, index_tengah
+        elif index < array[index_tengah]:
+            return binary_search(array, index, index_awal, index_tengah - 1)
+        else:
+            return binary_search(array, index, index_tengah + 1, index_akhir)
+
+var = ["Arsel", "Avivah", "Daiva", ["Wahyu", "Wibi"]]
+
+cari = input('Cari nama: ').capitalize()
+metode, kolom =  binary_search(var, cari, 0, len(var) - 1)
+
+if metode == -1:
+    print('Nama tidak ada')
+else:
+    print(f'Nama {cari} terdapat pada indeks: {metode} dikolom {kolom}')
